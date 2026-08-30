@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<!--
+SPDX-FileCopyrightText: 2022-2026 David Bensoussan
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<package format="3">
+  <name>aws_sdk_vendor</name>
+  <version>1.11.600</version>
+  <description>
+    Vendor package for the AWS SDK for C++, fetched live from github.com/aws/aws-sdk-cpp
+    at colcon-build time via ament_vendor() (VCS_TYPE git), pinned to a fixed version.
+    Builds only the `s3` service client by default (the AWS_SDK_BUILD_ONLY CMake cache
+    variable overrides this); zlib request compression is disabled (optional per the
+    SDK), keeping the default build minimal. Verified working against RustFS
+    (PutObject + multipart) before adoption by ros2_data_collection's Bridge Uploader.
+  </description>
+  <maintainer email="d.bensoussan@proton.me">David Bensoussan</maintainer>
+  <license>Apache-2.0</license>
+
+  <url type="repository">https://github.com/Minipada/aws_sdk_vendor</url>
+  <url type="bugtracker">https://github.com/Minipada/aws_sdk_vendor/issues</url>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_vendor_package</buildtool_depend>
+  <buildtool_depend>git</buildtool_depend>
+
+  <build_depend>libssl-dev</build_depend>
+  <build_depend>zlib</build_depend>
+  <build_depend>libcurl-dev</build_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,9 @@
+version = 1
+SPDX-PackageName = "aws_sdk_vendor"
+SPDX-PackageSupplier = "David Bensoussan <d.bensoussan@proton.me>"
+SPDX-PackageDownloadLocation = "https://github.com/Minipada/aws_sdk_vendor"
+
+[[annotations]]
+path = ["**.md", "LICENSE.md", ".gitignore"]
+SPDX-FileCopyrightText = "2022-2026 David Bensoussan"
+SPDX-License-Identifier = "MPL-2.0"

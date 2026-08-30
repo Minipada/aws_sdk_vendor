@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2022-2026 David Bensoussan
+# SPDX-License-Identifier: MPL-2.0
+
+# Run by prek (https://prek.j178.dev): `prek install` for the git hook,
+# `prek run --all-files` for everything. Same tool ros2_data_collection uses.
+# LICENSES/ holds verbatim license texts — including any upstream typos. No hook edits them.
+exclude: "^LICENSES/.*"
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+        name: Check that merge conflicts are not being committed
+      - id: detect-private-key
+        name: Detect if private key is added to the repository
+      - id: check-yaml
+        name: Verify yaml syntax
+      - id: check-toml
+        name: Verify toml syntax
+      - id: check-xml
+        name: Verify xml syntax
+      - id: mixed-line-ending
+        name: Detect if mixed line ending is used (\r vs. \r\n)
+      - id: end-of-file-fixer
+        name: Make sure that there is an empty line at the end
+      - id: trailing-whitespace
+        name: Remove trailing whitespace at end of line
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint-docker
+        args: [--ignore, DL3008]
+        # Default hook `files` regex only matches `Dockerfile`; this repo's Podman
+        # tooling uses `Containerfile` instead (CLAUDE.md "Containers: Podman, not
+        # Docker" in ros2_data_collection, the same convention here).
+        files: (^|/)(Dockerfile|Containerfile)(\.[a-zA-Z0-9_-]+)?$
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v6.2.0
+    hooks:
+      - id: reuse
+        name: Ensure every file declares its copyright and license
